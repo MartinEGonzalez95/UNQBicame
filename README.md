@@ -14,7 +14,7 @@ cualquiera de estas tres opciones ademas de poder interactuar
 con un mapa de la facultad. Va a ser posible acceder tanto 
 desde una PC como desde un celular.
 
-Repositorios de **Codigo**: [BackEnd](https://github.com/MartinEGonzalez95/UNQBicame) <-----> [FrontEnd](https://github.com/h3adHunter/UNQBicame-FrontEnd)
+Repositorios de **Codigo**: [Link](https://github.com/MartinEGonzalez95/UNQBicame)
 
 Tablero de **Backlog**: [Link](https://trello.com/b/zK35P4Vr/backlog)
 
