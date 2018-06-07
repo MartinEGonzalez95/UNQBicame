@@ -14,6 +14,8 @@ cualquiera de estas tres opciones ademas de poder interactuar
 con un mapa de la facultad. Va a ser posible acceder tanto 
 desde una PC como desde un celular.
 
+_Visual Story Mapping_: [Link](https://realtimeboard.com/app/board/o9J_kz8aebE=/)
+
 Repositorios de **Codigo**: [Link](https://github.com/MartinEGonzalez95/UNQBicame)
 
 Tablero de **Backlog**: [Link](https://trello.com/b/zK35P4Vr/backlog)
