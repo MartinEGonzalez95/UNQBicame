@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/aulas/agregar', 'Web\AulasController@create');
+Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
