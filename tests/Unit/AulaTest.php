@@ -10,11 +10,14 @@ namespace Tests\Unit;
 
 
 use App\Aula;
+use App\Sector;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class AulaTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function setUp()
     {
@@ -26,12 +29,34 @@ class AulaTest extends TestCase
     public function testCrearAula()
     {
 
-        Aula::create();
+        $aula  = new Aula();
+        $sector = new Sector(['nombre'=> 'Ala Izquierda','piso'=>1]);
+        $sector->save();
+
+        $aula->sector()->associate($sector);
+        $aula->save();
 
         $aulas = Aula::all();
 
         $this->assertCount(1, $aulas);
 
     }
+
+
+    public function testCrearRelacionConAula()
+    {
+
+        $sector = new Sector(['nombre'=> 'Ala Izquierda','piso'=>1]);
+        $sector->save();
+
+        $aula = new Aula();
+        $aula->sector()->associate($sector);
+        $aula->save();
+
+
+        $this->assertEquals($sector->id, $aula->sector_id);
+
+    }
+
 
 }

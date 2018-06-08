@@ -8,4 +8,11 @@ class Sector extends Model
 {
     protected $table = 'sectores';
 
+    protected $fillable = ['nombre','piso'];
+
+    public function aulas()
+    {
+            return $this->hasMany(Aula::class);
+    }
+
 }
