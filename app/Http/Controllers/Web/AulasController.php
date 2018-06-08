@@ -47,5 +47,9 @@ class AulasController extends Controller
         return view('aulas.create')->with(['sectores' => $sectores]);
         
     }
+
+    public function index(){
+        return view('aulas.view');
+    }
     
 }
