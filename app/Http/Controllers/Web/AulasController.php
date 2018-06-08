@@ -14,7 +14,7 @@ class AulasController extends Controller
     {
         
         $sectores = Sector::all();
-        
+
         return view('aulas.create')->with(['sectores' => $sectores]);
         
     }
@@ -29,7 +29,8 @@ class AulasController extends Controller
     public function store(Request $request)
     {
 
-        $sector = Sector::find($request->get('sector')->id);
+        $value = $request->get('sector_id');
+        $sector = Sector::find($value);
 
         $nuevaAula=new Aula();
 
@@ -37,6 +38,7 @@ class AulasController extends Controller
 
         $nuevaAula->save();
 
+        return redirect('/aulas');
     }
 
 
