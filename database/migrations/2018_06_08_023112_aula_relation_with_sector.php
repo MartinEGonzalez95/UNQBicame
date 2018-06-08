@@ -15,7 +15,7 @@ class AulaRelationWithSector extends Migration
     {
         Schema::table('aulas',function (Blueprint $table) {
 
-            $table->integer('sector_id');
+            $table->integer('sector_id')->default(0);
         });
     }
 
