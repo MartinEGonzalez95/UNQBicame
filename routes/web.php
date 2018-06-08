@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
+Route::get('/aulas', 'Web\AulasController@index');

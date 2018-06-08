@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Aula;
-use Illuminate\Http\Request;
 
 class AulasController extends Controller
 {
