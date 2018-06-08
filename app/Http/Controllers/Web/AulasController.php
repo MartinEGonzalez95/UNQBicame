@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Aula;
 use App\Http\Controllers\Controller;
 
 class AulasController extends Controller
@@ -49,7 +50,10 @@ class AulasController extends Controller
     }
 
     public function index(){
-        return view('aulas.view');
+        
+        $aulas = Aula::with('Sector')->get();
+        
+        return view('aulas.view')->with(['aulas' => $aulas]);
     }
     
 }

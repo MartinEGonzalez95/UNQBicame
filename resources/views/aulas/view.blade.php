@@ -24,9 +24,11 @@
         <th>Sector</th>
         <th>Piso</th>
     </tr>
+    @foreach($aulas as $aula)
     <tr>
-        <td>60</td>
-        <td>A</td>
-        <td>Planta Baja</td>
+        <td>{{$aula->id}}</td>
+        <td>{{$aula->sector->nombre}}</td>
+        <td>{{$aula->sector->piso}}</td>
     </tr>
+    @endforeach
 </table>
