@@ -29,7 +29,12 @@ class AulaTest extends TestCase
     public function testCrearAula()
     {
 
-        Aula::create();
+        $aula  = new Aula();
+        $sector = new Sector(['nombre'=> 'Ala Izquierda','piso'=>1]);
+        $sector->save();
+
+        $aula->sector()->associate($sector);
+        $aula->save();
 
         $aulas = Aula::all();
 
