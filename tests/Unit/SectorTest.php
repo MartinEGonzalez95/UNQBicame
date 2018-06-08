@@ -13,6 +13,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class SectorTest extends TestCase
 {
 
+    use RefreshDatabase;
+
     public function setUp()
     {
         parent::setUp();
@@ -42,5 +44,8 @@ class SectorTest extends TestCase
         $this->assertCount(1, $sectores);
 
     }
+
+
+
 
 }
