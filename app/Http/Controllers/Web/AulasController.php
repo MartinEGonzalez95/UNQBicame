@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Aula;
 use App\Http\Controllers\Controller;
+use App\Sector;
+use Illuminate\Http\Request;
 
 class AulasController extends Controller
 {
@@ -11,40 +13,8 @@ class AulasController extends Controller
     public function create()
     {
         
-        $sectores = [
-            
-            'A' => [
-                'Planta baja',
-                '1er Piso',
-                '2do Piso',
-            ],
-            'B' => [
-                'Planta baja',
-                '1er Piso',
-                '2do Piso',
-            ],
-            'C' => [
-                'Planta baja',
-                '1er Piso',
-            ],
-            'D' => [
-                '1er Piso'
-            ],
-            'E' => [
-                'Planta baja'
-            ],
-            'F' => [
-                'Planta baja',
-                '1er Piso',
-            ],
-            'G' => [
-                'Planta baja',
-                '1er Piso',
-                '2do Piso',
-            ],
-            
-        ];
-        
+        $sectores = Sector::all();
+
         return view('aulas.create')->with(['sectores' => $sectores]);
         
     }
@@ -55,5 +25,23 @@ class AulasController extends Controller
         
         return view('aulas.view')->with(['aulas' => $aulas]);
     }
-    
+
+    public function store(Request $request)
+    {
+
+        $value = $request->get('sector_id');
+        $sector = Sector::find($value);
+
+        $nuevaAula=new Aula();
+
+        $nuevaAula->sector()->associate($sector);
+
+        $nuevaAula->save();
+
+        return redirect('/aulas');
+    }
+
+
+
+
 }
