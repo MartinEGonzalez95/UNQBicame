@@ -1,4 +1,4 @@
-<form>
+<form method='post' action="/aulas">
 
     <div class="form-group">
 
@@ -14,17 +14,9 @@
 
         <select id="aulaSector">
 
-            @foreach($sectores as $sector => $pisos):
+            @foreach($sectores as $sector):
 
-                <optgroup label="{{$sector}}">
-
-                    @foreach($pisos as $piso):
-
-                        <option>{{$piso}}</option>
-
-                    @endforeach
-
-                </optgroup>
+                <option label="{{$sector}}" >{{$sector->nombre}}</option>
 
             @endforeach
 

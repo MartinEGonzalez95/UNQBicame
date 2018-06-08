@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
 Route::get('/aulas', 'Web\AulasController@index');
+Route::post('/aulas','Web\AulasController@store');
+
