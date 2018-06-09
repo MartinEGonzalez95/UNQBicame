@@ -10,4 +10,7 @@ class Aula extends Model
     {
         return $this->belongsTo(Sector::class);
     }
+
+    protected $fillable = ['nombre'];
+
 }
