@@ -1,4 +1,4 @@
-<form method="post" action="/materias/agregar">
+<form method="post" action="/materias">
     {{csrf_field()}}
 
     <div class="form-group">

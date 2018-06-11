@@ -6,7 +6,7 @@ use App\Materia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MateriaController extends Controller
+class MateriasController extends Controller
 {
 
 
@@ -18,11 +18,21 @@ class MateriaController extends Controller
         return view('materias.view')->with(['materias' => $materias]);
     }
 
+    public function create()
+    {
+
+
+        return view('materias.create');
+
+    }
+
     public function store(Request $request)
     {
 
 
-        $materia = new Materia($request->get('materiaNombre'));
+        $materia = new Materia(
+            ['nombre'=> $request->get('materiaNombre')]
+        );
         $materia->save();
 
         return redirect('/materias');
