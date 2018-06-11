@@ -29,13 +29,13 @@ class AulasController extends Controller
     public function store(Request $request)
     {
 
-        $value = $request->get('sector_id');
-        $sector = Sector::find($value);
+        $sectorID = $request->get('sector_id');
+        $sector = Sector::find($sectorID);
+        $nombre = $request->get('aulaNombre');
 
-        $nuevaAula=new Aula();
+        $nuevaAula = new Aula(['nombre' => $nombre]);
 
         $nuevaAula->sector()->associate($sector);
-
         $nuevaAula->save();
 
         return redirect('/aulas');

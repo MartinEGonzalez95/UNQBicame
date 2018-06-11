@@ -9,9 +9,12 @@
 namespace Tests\Unit\Controllers\API;
 
 use App\Aula;
+use App\Http\Controllers\Web\AulasController;
 use App\Sector;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Tests\TestCase;
 
 class AulasControllerTest extends TestCase
 {
@@ -37,9 +40,36 @@ class AulasControllerTest extends TestCase
         # Route::get('/aulas', 'AulasController@index');
         $response = $this->call('GET', '/api/aulas');
 
-        $this->assertEquals(200, $response->status());
+        $response->assertStatus(200);
         $this->assertEquals($aulas, $response->getContent());
 
     }
+
+    public function testPostAulaNueva()
+    {
+        Session::start();
+
+        $request = Request::create('/aulas/agregar', 'POST', [
+            'aulaNombre' => '37',
+            'sector_id' => 1,
+            '_token' => csrf_token()
+        ]);
+        $controller = new AulasController();
+
+        #Ruta donde se usa el controlador.
+        # Route::post('/aulas/agregar', 'AulasController@store');
+        $response = $controller->store($request);
+
+        $aulas = Aula::all();
+        print($aulas);
+
+        $this->assertCount(2, $aulas);
+        $this->assertEquals(200, $response->getStatusCode());
+
+    }
+
+
+
+
 
 }

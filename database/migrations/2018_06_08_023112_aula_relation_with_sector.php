@@ -26,6 +26,9 @@ class AulaRelationWithSector extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('aulas',function(Blueprint $table){
+
+            $table->dropColumn('sector_id');
+        });
     }
 }
