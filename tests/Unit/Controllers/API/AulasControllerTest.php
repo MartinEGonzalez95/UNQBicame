@@ -45,31 +45,4 @@ class AulasControllerTest extends TestCase
 
     }
 
-    public function testPostAulaNueva()
-    {
-        Session::start();
-
-        $request = Request::create('/aulas/agregar', 'POST', [
-            'aulaNombre' => '37',
-            'sector_id' => 1,
-            '_token' => csrf_token()
-        ]);
-        $controller = new AulasController();
-
-        #Ruta donde se usa el controlador.
-        # Route::post('/aulas/agregar', 'AulasController@store');
-        $response = $controller->store($request);
-
-        $aulas = Aula::all();
-        print($aulas);
-
-        $this->assertCount(2, $aulas);
-        $this->assertEquals(200, $response->getStatusCode());
-
-    }
-
-
-
-
-
 }
