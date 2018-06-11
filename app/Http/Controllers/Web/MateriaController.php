@@ -17,4 +17,15 @@ class MateriaController extends Controller
 
         return view('materias.view')->with(['materias' => $materias]);
     }
+
+    public function store(Request $request)
+    {
+
+
+        $materia = new Materia($request->get('materiaNombre'));
+        $materia->save();
+
+        return redirect('/materias');
+
+    }
 }

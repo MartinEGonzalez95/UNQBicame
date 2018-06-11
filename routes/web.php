@@ -21,4 +21,5 @@ Route::post('/aulas/agregar','Web\AulasController@store');
 
 
 Route::get('/materias', 'Web\MateriaController@index');
+Route::post('/materias','Web\MateriaController@store');
 
