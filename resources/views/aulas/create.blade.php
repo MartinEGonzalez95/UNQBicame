@@ -2,9 +2,9 @@
     {{csrf_field()}}
     <div class="form-group">
 
-        <label for="aulaNumero">Número</label>
+        <label for="aulaNombre">Número</label>
 
-        <input type="text" class="form-control" id="aulaNumero" name="aulaNumero">
+        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
 
     </div>
 

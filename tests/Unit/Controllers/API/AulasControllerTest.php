@@ -9,9 +9,12 @@
 namespace Tests\Unit\Controllers\API;
 
 use App\Aula;
+use App\Http\Controllers\Web\AulasController;
 use App\Sector;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Tests\TestCase;
 
 class AulasControllerTest extends TestCase
 {
@@ -37,7 +40,7 @@ class AulasControllerTest extends TestCase
         # Route::get('/aulas', 'AulasController@index');
         $response = $this->call('GET', '/api/aulas');
 
-        $this->assertEquals(200, $response->status());
+        $response->assertStatus(200);
         $this->assertEquals($aulas, $response->getContent());
 
     }
