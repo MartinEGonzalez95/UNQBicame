@@ -47,6 +47,12 @@ class AulasControllerTest extends TestCase
         $response = $this->post( '/aulas/agregar', $jsonPost);
 
         $aulas = Aula::all();
+        $aulaNueva = $aulas->first();
+        $sectorAlaIzquierda = $aulaNueva->sector;
+
+
+        $this->assertEquals('37B',$aulaNueva->nombre);
+        $this->assertEquals('Ala Izquierda',$sectorAlaIzquierda->nombre);
 
         $this->assertCount(1,$aulas);
         $this->assertEquals(302, $response->status());
