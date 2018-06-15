@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/aulas', 'AulasController@index');
+
+Route::get('/materias', 'MateriasControllerAPI@index');
