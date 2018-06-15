@@ -17,6 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/aulas', 'AulasController@index');
-
-Route::get('/materias', 'MateriasControllerAPI@index');
+Route::get('/aulas', 'AulasController@index')->middleware('cors');
+Route::get('/materias', 'MateriasControllerAPI@index')->middleware('cors');
