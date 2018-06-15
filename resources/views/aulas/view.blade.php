@@ -26,7 +26,7 @@
     </tr>
     @foreach($aulas as $aula)
     <tr>
-        <td>{{$aula->id}}</td>
+        <td>{{$aula->nombre}}</td>
         <td>{{$aula->sector->nombre}}</td>
         <td>{{$aula->sector->piso}}</td>
     </tr>
