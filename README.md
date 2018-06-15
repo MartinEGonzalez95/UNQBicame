@@ -16,7 +16,12 @@ desde una PC como desde un celular.
 
 _Visual Story Mapping_: [Link](https://realtimeboard.com/app/board/o9J_kz8aebE=/)
 
-Repositorios de **Codigo**: [Link](https://github.com/MartinEGonzalez95/UNQBicame)
+Repositorios de **Codigo**: 
+        
+   _Back-end_: [Link](https://github.com/MartinEGonzalez95/UNQBicame)
+   
+   _Front-end_: [Link](https://github.com/h3adHunter/UNQBicame-FrontEnd)
+
 
 Tablero de **Backlog**: [Link](https://trello.com/b/zK35P4Vr/backlog)
 

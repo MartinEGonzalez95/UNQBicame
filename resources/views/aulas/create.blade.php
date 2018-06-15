@@ -16,7 +16,7 @@
 
             @foreach($sectores as $sector):
 
-                <option value="{{$sector->id}}">{{$sector->nombre}}</option>
+                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
 
             @endforeach
 
