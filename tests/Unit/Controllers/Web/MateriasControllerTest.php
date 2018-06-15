@@ -26,17 +26,6 @@ class MateriasControllerTest extends TestCase
         $materia->save();
 
     }
-    public function testIndex()
-    {
-
-        $materias = Materia::all();
-
-        $response  = $this->get('/materias');
-
-        
-    }
-
-
 
     public function testStore()
     {
