@@ -21,7 +21,10 @@ Route::post('/aulas/agregar','Web\AulasController@store');
 
 
 Route::get('/materias', 'Web\MateriasController@index');
-Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias.create');
 
+Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias.create');
 Route::post('/materias','Web\MateriasController@store');
+
+Route::get('/materias/{id}/editar', 'Web\MateriasController@edit');
+Route::put('/materias/{id}/editar','Web\MateriasController@update');
 
