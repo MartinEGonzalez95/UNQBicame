@@ -25,3 +25,6 @@ Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias
 
 Route::post('/materias','Web\MateriasController@store');
 
+Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas.create');
+Route::post('/cursadas','Web\CursadasController@store');
+
