@@ -23,6 +23,7 @@ class MateriasControllerTest extends TestCase
         parent::setUp();
 
         $materia = new Materia(['nombre'=>'Intro']);
+        $materia->id = 1;
         $materia->save();
 
     }
@@ -41,6 +42,29 @@ class MateriasControllerTest extends TestCase
 
         $materias = Materia::all();
         $this->assertCount(2,$materias);
+        $this->assertEquals(302, $response->status());
+
+    }
+
+    public function testModificarUnaMateria()
+    {
+
+        $jsonPut = [
+            '_token'=> csrf_token(),
+            'id'=> 1,
+            'materiaNombre' => 'Objetos 2'
+        ];
+
+
+        # Route::put('/materias/{materia}/editar', 'MateriasController@update');
+        $response = $this->put( '/materias/'. 1 .'/editar' , $jsonPut);
+
+        $materias = Materia::all();
+        $objetos1 = $materias->first();
+
+        $this->assertEquals('Objetos 2' , $objetos1->nombre);
+
+        $this->assertCount(1,$materias);
         $this->assertEquals(302, $response->status());
 
     }

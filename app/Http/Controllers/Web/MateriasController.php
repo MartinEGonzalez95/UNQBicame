@@ -31,11 +31,34 @@ class MateriasController extends Controller
 
 
         $materia = new Materia(
-            ['nombre'=> $request->get('materiaNombre')]
+            ['nombre' => $request->get('materiaNombre')]
         );
         $materia->save();
 
         return redirect('/materias');
 
+    }
+
+
+
+    public function edit($id)
+    {
+        $materia = Materia::find($id);
+
+        return view('materias.edit')
+            ->with('materia', $materia);
+    }
+
+
+    public function update(Request $request)
+    {
+        dd($request);
+       $materiaAModificar = Materia::find($request->get('id'));
+
+        $materiaAModificar->nombre = $request->get('materiaNombre');
+
+        $materiaAModificar->save();
+
+        return redirect('/materias');
     }
 }
