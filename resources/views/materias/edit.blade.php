@@ -3,7 +3,7 @@
 
     <h1>Editando:  {{ $materia->nombre}}</h1>
 
-    <form method="get" action="/materias/{{$materia->id}}/editar">
+    <form method="post" action="/materias/{{$materia->id}}/editar">
         {{csrf_field()}}
         {{ method_field('PUT') }}
         <div class="form-group">

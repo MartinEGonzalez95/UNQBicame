@@ -50,9 +50,9 @@ class MateriasController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-       $materiaAModificar = Materia::find($request->get('id'));
+       $materiaAModificar = Materia::find($id);
 
         $materiaAModificar->nombre = $request->get('materiaNombre');
 
