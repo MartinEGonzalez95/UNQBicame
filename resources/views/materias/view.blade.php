@@ -22,11 +22,14 @@
     <tr>
         <th>ID</th>
         <th>Nombre</th>
+        <th> </th>
     </tr>
     @foreach($materias as $materia)
     <tr>
         <td>{{$materia->id}}</td>
         <td>{{$materia->nombre}}</td>
+        <td> <a href="{{action("Web\MateriasController@edit",[$materia->id])}}" > Editar </a></td>
+
     </tr>
     @endforeach
 </table>
