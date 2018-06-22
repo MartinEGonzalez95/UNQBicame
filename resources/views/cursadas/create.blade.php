@@ -1,4 +1,4 @@
-<form method="post" action="/cursadas">
+<form method="post" action="{{ route('cursadas.store') }}">
 
     {{ csrf_field() }}
 
