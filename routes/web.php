@@ -31,7 +31,14 @@ Route::get('/materias', 'Web\MateriasController@index');
 
 Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias.create');
 Route::post('/materias','Web\MateriasController@store');
-
 Route::get('/materias/{id}/editar', 'Web\MateriasController@edit')->name('materias.edit');
 Route::put('/materias/{id}/editar','Web\MateriasController@update');
+
+/**
+ * Cursadas
+ */
+Route::get('/cursadas', 'Web\CursadasController@index')->name('cursadas.index');
+Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas.create');
+Route::post('/cursadas','Web\CursadasController@store')->name('cursadas.store');
+
 

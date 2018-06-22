@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/aulas', 'AulasController@index')->middleware('cors');
 Route::get('/materias', 'MateriasControllerAPI@index')->middleware('cors');
+Route::get('/cursadas', 'CursadasController@index')->middleware('cors');
