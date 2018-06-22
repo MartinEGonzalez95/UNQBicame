@@ -28,7 +28,7 @@
     <tr>
         <td>{{$materia->id}}</td>
         <td>{{$materia->nombre}}</td>
-        <td> <a href="{{action("Web\MateriasController@edit",[$materia->id])}}" > Editar </a></td>
+        <td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" > Editar </a></td>
 
     </tr>
     @endforeach
