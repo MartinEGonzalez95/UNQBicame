@@ -37,6 +37,8 @@ class CursadasController extends Controller
         $cursada->materia()->associate($materia);
 
         $cursada->save();
+
+	return redirect('/cursadas');
     }
 
     public function create()
