@@ -41,7 +41,31 @@ class AulasController extends Controller
         return redirect('/aulas');
     }
 
+    public function edit($id){
 
+        $aula = Aula::find($id);
+        $sectores = Sector::all();
+
+        return view('aulas.edit')->with(["sectores"=> $sectores ,'aula' => $aula]);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $aula = Aula::find($id);
+
+        $aula->nombre = $request->get('aulaNombre');
+
+
+        $sectorID = $request->get('sector_id');
+        $sector = Sector::find($sectorID);
+        $aula->sector()->associate($sector);
+
+
+
+        $aula->save();
+
+        return redirect('/aulas');
+    }
 
 
 }

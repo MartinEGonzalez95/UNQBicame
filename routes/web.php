@@ -15,11 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Aulas
+
 Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
 Route::get('/aulas', 'Web\AulasController@index');
 Route::post('/aulas/agregar','Web\AulasController@store');
 
+Route::get('/aulas/{id}/editar','Web\AulasController@edit');
+Route::put('/aulas/{id}/editar','Web\AulasController@update');
 
+
+
+//Materias
 Route::get('/materias', 'Web\MateriasController@index');
 Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias.create');
 

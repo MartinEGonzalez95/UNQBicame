@@ -10,6 +10,7 @@ namespace Tests\Unit\Controllers\Web;
 
 
 use App\Aula;
+use App\Http\Controllers\Web\AulasController;
 use App\Sector;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -21,6 +22,7 @@ class AulasControllerTest extends TestCase
     use  RefreshDatabase;
     use WithoutMiddleware;
     private $sector;
+    private $aula37B;
 
     public function setUp()
     {
@@ -30,10 +32,14 @@ class AulasControllerTest extends TestCase
         $this->sector = new Sector(['nombre'=> 'Ala Izquierda','piso'=>1]);
         $this->sector->save();
 
+        $this->aula37B = new Aula(['nombre'=> '37B']);
+        $this->aula37B->sector()->associate($this->sector);
+        $this->aula37B->id = 1;
+        $this->aula37B->save();
     }
 
 
-    public function testStore()
+    public function testSeCreaUnaNuevaAula()
     {
 
         $jsonPost = [
@@ -54,8 +60,69 @@ class AulasControllerTest extends TestCase
         $this->assertEquals('37B',$aulaNueva->nombre);
         $this->assertEquals('Ala Izquierda',$sectorAlaIzquierda->nombre);
 
-        $this->assertCount(1,$aulas);
+        $this->assertCount(2,$aulas);
         $this->assertEquals(302, $response->status());
 
     }
+
+
+    public function testDadaUnAulaExistenteSeEditaCambiandoElNombre()
+    {
+
+        $jsonPut = [
+            '_token'=> csrf_token(),
+            'sector_id'=> $this->sector->id,
+            'aulaNombre' => '38'
+        ];
+
+
+        # Route::put('/aulas/{id}/editar', 'AulasController@update');
+        $response = $this->put( '/aulas/'.    $this->aula37B->id . '/editar', $jsonPut);
+
+
+        $aulaEditada = Aula::find($this->aula37B->id);
+
+        $sectorAlaIzquierda = $aulaEditada->sector;
+
+        $this->assertCount(1,Aula::all());
+        $this->assertEquals(302, $response->status());
+
+        $this->assertEquals('38',$aulaEditada->nombre);
+        $this->assertEquals( $this->sector->nombre, $sectorAlaIzquierda->nombre);
+
+
+    }
+
+
+    public function testDadaUnAulaExistenteSeEditaCambiandoElSector()
+    {
+
+
+        $nuevoSector = new Sector(['nombre'=> 'Ala Derecha','piso'=>1]);
+        $nuevoSector->save();
+
+        $jsonPut = [
+            '_token'=> csrf_token(),
+            'sector_id'=> $nuevoSector->id,
+            'aulaNombre' => '37B'
+        ];
+
+
+        # Route::put('/aulas/{id}/editar', 'AulasController@update');
+        $response = $this->put( '/aulas/'.    $this->aula37B->id . '/editar', $jsonPut);
+
+
+        $aulaEditada = Aula::find($this->aula37B->id);
+
+        $sectorActual = $aulaEditada->sector;
+
+        $this->assertCount(1,Aula::all());
+        $this->assertEquals(302, $response->status());
+
+        $this->assertEquals( $nuevoSector->nombre, $sectorActual->nombre);
+
+
+    }
+
+
 }

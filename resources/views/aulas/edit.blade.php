@@ -1,0 +1,31 @@
+<form method="post" action="/aulas/{{$aula->id}}/editar">
+    {{csrf_field()}}
+    {{method_field('PUT')}}
+
+    <div class="form-group">
+
+        <label for="aulaNombre">Número</label>
+
+        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="aulaSector">Sector</label>
+
+        <select id="aulaSector"  name="sector_id">
+
+            @foreach($sectores as $sector):
+
+                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+
+            @endforeach
+
+        </select>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Guardar </button>
+
+</form>
