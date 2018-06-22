@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 
 class CursadasController extends Controller
 {
+    public function index()
+    {
+
+        $cursadas = Cursada::all();
+
+        return view('cursadas.index')->with(['cursadas' => $cursadas]);
+
+    }
+
     public function store(Request $request)
     {
         $params = $request->all();

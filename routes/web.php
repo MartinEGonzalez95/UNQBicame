@@ -37,6 +37,7 @@ Route::put('/materias/{id}/editar','Web\MateriasController@update');
 /**
  * Cursadas
  */
+Route::get('/cursadas', 'Web\CursadasController@index')->name('cursadas.index');
 Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas.create');
 Route::post('/cursadas','Web\CursadasController@store')->name('cursadas.store');
 
