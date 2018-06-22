@@ -20,7 +20,6 @@
 
 <table>
     <tr>
-        <th>ID</th>
         <th>Aula</th>
         <th>Materia</th>
         <th>Día</th>
@@ -29,14 +28,11 @@
     </tr>
     @foreach($cursadas as $cursada)
         <tr>
-            <td>{{ $cursada->id }}</td>
             <td>{{ $cursada->aula->nombre }}</td>
             <td>{{ $cursada->materia->nombre }}</td>
             <td>{{ $cursada->dia }}</td>
             <td>{{ $cursada->hora_inicio }}</td>
             <td>{{ $cursada->hora_fin }}</td>
-            {{--<td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" > Editar </a></td>--}}
-
         </tr>
     @endforeach
 </table>
