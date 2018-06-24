@@ -47,4 +47,13 @@ class CursadasController extends Controller
         return view('cursadas.create')->with(['aulas' => $aulas, 'materias' => $materias]);
 
     }
+
+    public function edit($id){
+
+        $cursada = Cursada::find($id);
+        $aulas = Aula::all();
+        $materias = Materia::all();
+
+        return view('aulas.edit')->with(['cursada'=> $cursada, 'aulas' => $aulas, 'materias' => $materias]);
+    }
 }
