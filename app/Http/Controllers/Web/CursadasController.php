@@ -37,6 +37,7 @@ class CursadasController extends Controller
         $cursada->materia()->associate($materia);
 
         $cursada->save();
+        return redirect('/cursadas');
     }
 
     public function create()
@@ -48,12 +49,34 @@ class CursadasController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $cursada = Cursada::find($id);
         $aulas = Aula::all();
         $materias = Materia::all();
 
         return view('aulas.edit')->with(['cursada'=> $cursada, 'aulas' => $aulas, 'materias' => $materias]);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $params = $request->all();
+
+        $cursada = Cursada::find($id);
+
+        $cursada->dia = $params['dia'];
+        $cursada->hora_inicio = $params['hora_inicio'];
+        $cursada->hora_fin = $params['hora_fin'];
+
+        $aula = Aula::find($params['aula']);
+
+        $materia = Materia::find($params['materia']);
+
+        $cursada->aula()->associate($aula);
+        $cursada->materia()->associate($materia);
+
+        $cursada->save();
+        return redirect('/cursadas');
     }
 }
