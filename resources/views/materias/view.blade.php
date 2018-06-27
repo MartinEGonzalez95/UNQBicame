@@ -3,8 +3,8 @@
 @section('content')
 
 <h2> Materias </h2>
-<a href="{{ route('materias.create') }}">Agregar</a>
-<table>
+<a href="{{ route('materias.create') }}" class="btn btn-link">Agregar</a>
+<table class="table table-borderless table-hover table-sm">
     <tr>
         <th>ID</th>
         <th>Nombre</th>

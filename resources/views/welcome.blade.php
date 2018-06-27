@@ -28,15 +28,31 @@
 
             <div class="content">
 
-                <div class="title m-b-md">
-                    UNQBicame
-                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">UNQBicame</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="links">
-                    <a href="{{ route('aulas.index') }}">Aulas</a>
-                    <a href="{{ route('materias.index') }}">Materias</a>
-                    <a href="{{ route('cursadas.index') }}">Cursadas</a>
-                </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav mr-auto">
+                            <li class="@if(\Route::current()->getName() == 'aulas.index') {{ 'active ' }} @endif nav-item">
+                                <a class="nav-link" href="{{ route('aulas.index') }}">Aulas</a>
+                            </li>
+                            <li class="@if(\Route::current()->getName() == 'materias.index') {{ 'active ' }} @endif nav-item">
+                                <a class="nav-link" href="{{ route('materias.index') }}">Materias</a>
+                            </li>
+                            <li class="@if(\Route::current()->getName() == 'cursadas.index') {{ 'active ' }} @endif nav-item">
+                                <a class="nav-link" href="{{ route('cursadas.index') }}">Cursadas</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
+
+
+
 
                 <div class="container">
                     @yield('content')
