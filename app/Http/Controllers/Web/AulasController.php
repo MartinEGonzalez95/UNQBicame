@@ -26,6 +26,13 @@ class AulasController extends Controller
         return view('aulas.view')->with(['aulas' => $aulas]);
     }
 
+    public function show(Aula $aula)
+    {
+
+        return view('aulas.show')->with(['aula' => $aula]);
+
+    }
+
     public function store(Request $request)
     {
 
