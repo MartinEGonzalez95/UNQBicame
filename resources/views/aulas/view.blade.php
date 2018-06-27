@@ -9,6 +9,7 @@
         <th>Sector</th>
         <th>Piso</th>
         <th> </th>
+        <th> </th>
     </tr>
     @foreach($aulas as $aula)
     <tr>
@@ -17,6 +18,8 @@
         <td>{{$aula->sector->piso}}</td>
         <td>
             <a href="{{action("Web\AulasController@edit",[$aula->id])}}"><i class="fas fa-pencil-alt"></i></a>
+        <td>
+            <a href="{{route('aulas.delete', $aula->id)}}{{time()}}"><i class="fa fa-trash"></i></a>
         </td>
     </tr>
     @endforeach

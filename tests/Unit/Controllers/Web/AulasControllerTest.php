@@ -124,5 +124,18 @@ class AulasControllerTest extends TestCase
 
     }
 
+    public function testSeBorraUnAula(){
+
+        $aulas = Aula::all();
+        $idAulaABorrar = $aulas->first()->id;
+
+        # Route::delete('/aulas/{id}', 'AulasController@destroy');
+        $response = $this->get( '/aulas/'.    $idAulaABorrar . '/delete');
+
+        $response->assertStatus(302);
+        $this->assertCount(0,Aula::all());
+
+    }
+
 
 }
