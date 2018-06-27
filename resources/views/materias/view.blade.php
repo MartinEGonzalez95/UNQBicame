@@ -14,7 +14,7 @@
     <tr>
         <td>{{$materia->id}}</td>
         <td>{{$materia->nombre}}</td>
-        <td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" > Editar </a></td>
+        <td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" ><i class="fas fa-pencil-alt"></i></a></td>
 
     </tr>
     @endforeach

@@ -15,7 +15,9 @@
         <td>{{$aula->nombre}}</td>
         <td>{{$aula->sector->nombre}}</td>
         <td>{{$aula->sector->piso}}</td>
-        <td> <a href="{{action("Web\AulasController@edit",[$aula->id])}}"> Editar </a></td>
+        <td>
+            <a href="{{action("Web\AulasController@edit",[$aula->id])}}"><i class="fas fa-pencil-alt"></i></a>
+        </td>
     </tr>
     @endforeach
 </table>
