@@ -49,10 +49,8 @@ class CursadasController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Cursada $cursada)
     {
-
-        $cursada = Cursada::find($id);
         $aulas = Aula::all();
         $materias = Materia::all();
 
