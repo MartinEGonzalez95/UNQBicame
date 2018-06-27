@@ -1,20 +1,6 @@
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-    }
+@extends('welcome')
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+@section('content')
 
 <h2>Cursadas</h2>
 <a href="{{ route('cursadas.create') }}">Agregar</a>
@@ -36,3 +22,5 @@
         </tr>
     @endforeach
 </table>
+
+@endsection
