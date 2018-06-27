@@ -18,12 +18,11 @@ Route::get('/', function () {
 //Aulas
 
 Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
-Route::get('/aulas', 'Web\AulasController@index');
-Route::post('/aulas/agregar','Web\AulasController@store');
-
-Route::get('/aulas/{id}/editar','Web\AulasController@edit');
-Route::put('/aulas/{id}/editar','Web\AulasController@update');
-Route::get('/aulas/{aula}','Web\AulasController@show');
+Route::get('/aulas', 'Web\AulasController@index')->name('aulas.index');
+Route::post('/aulas/agregar','Web\AulasController@store')->name('aulas.store');
+Route::get('/aulas/{id}/editar','Web\AulasController@edit')->name('aulas.edit');
+Route::put('/aulas/{id}/editar','Web\AulasController@update')->name('aulas.update');
+Route::get('/aulas/{aula}','Web\AulasController@show')->name('aulas.show');
 
 
 
