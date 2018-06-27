@@ -17,7 +17,7 @@
 </style>
 
 <h2> Materias </h2>
-
+<a href="{{ route('materias.create') }}">Agregar</a>
 <table>
     <tr>
         <th>ID</th>

@@ -17,7 +17,7 @@
 </style>
 
 <h2>Cursadas</h2>
-
+<a href="{{ route('cursadas.create') }}">Agregar</a>
 <table>
     <tr>
         <th>Aula</th>
