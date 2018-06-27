@@ -54,7 +54,7 @@ class CursadasController extends Controller
         $aulas = Aula::all();
         $materias = Materia::all();
 
-        return view('aulas.edit')->with(['cursada'=> $cursada, 'aulas' => $aulas, 'materias' => $materias]);
+        return view('cursadas.edit')->with(['cursada'=> $cursada, 'aulas' => $aulas, 'materias' => $materias]);
     }
 
     public function update(Request $request,$id)
