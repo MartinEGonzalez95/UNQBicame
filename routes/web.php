@@ -23,6 +23,7 @@ Route::post('/aulas/agregar','Web\AulasController@store');
 
 Route::get('/aulas/{id}/editar','Web\AulasController@edit');
 Route::put('/aulas/{id}/editar','Web\AulasController@update');
+Route::get('/aulas/{aula}','Web\AulasController@show');
 
 
 
@@ -40,5 +41,3 @@ Route::put('/materias/{id}/editar','Web\MateriasController@update');
 Route::get('/cursadas', 'Web\CursadasController@index')->name('cursadas.index');
 Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas.create');
 Route::post('/cursadas','Web\CursadasController@store')->name('cursadas.store');
-
-
