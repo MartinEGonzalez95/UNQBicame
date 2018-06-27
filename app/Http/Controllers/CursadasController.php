@@ -10,7 +10,7 @@ class CursadasController extends Controller
     public function index()
     {
 
-        return Cursada::all();
+        return Cursada::with(['aula', 'materia'])->get();
 
     }
 }
