@@ -7,23 +7,26 @@
         <div class="form-group">
             <label for="diaCursada">Día</label>
             <select class="form-control" name="dia" id="diaCursada">
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <option value="miercoles">Miércoles</option>
-                <option value="jueves">Jueves</option>
-                <option value="viernes">Viernes</option>
-                <option value="sabado">Sábado</option>
+
+                {{-- TODO Pasar dias cómo array para evitar repetir el if --}}
+                <option @if($cursada->dia == 'lunes') {{ 'selected' }} @endif value="lunes">Lunes</option>
+                <option @if($cursada->dia == 'martes') {{ 'selected' }} @endif value="martes">Martes</option>
+                <option @if($cursada->dia == 'miercoles') {{ 'selected' }} @endif value="miercoles">Miércoles</option>
+                <option @if($cursada->dia == 'jueves') {{ 'selected' }} @endif value="jueves">Jueves</option>
+                <option @if($cursada->dia == 'viernes') {{ 'selected' }} @endif value="viernes">Viernes</option>
+                <option @if($cursada->dia == 'sabado') {{ 'selected' }} @endif value="sabado">Sábado</option>
+
             </select>
         </div>
 
         <div class="form-group">
             <label for="horaInicio">Hora de inicio</label>
-            <input type="time" min="8:00" max="22:00" class="form-control" id="horaInicio" name="hora_inicio">
+            <input type="time" value="{{ $cursada->hora_inicio }}" min="8:00" max="22:00" class="form-control" id="horaInicio" name="hora_inicio">
         </div>
 
         <div class="form-group">
             <label for="horaFin">Hora de fin</label>
-            <input type="time" class="form-control" id="horaFin" name="hora_fin">
+            <input type="time" value="{{ $cursada->hora_fin }}" class="form-control" id="horaFin" name="hora_fin">
         </div>
 
         <div class="form-group">
@@ -31,7 +34,16 @@
         <select class="form-control" name="materia" id="materia">
         @foreach($materias as $materia)
 
-            <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+            @if($materia->id == $cursada->materia->id)
+
+                <option selected value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+
+            @else
+
+                <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+
+            @endif
+
 
         @endforeach
         </select>
@@ -43,7 +55,15 @@
             <select class="form-control" name="aula" id="aula">
                 @foreach($aulas as $aula)
 
-                    <option value="{{ $aula->id }}">{{ $aula->nombre }}</option>
+                    @if($aula->id == $cursada->aula->id)
+
+                        <option value="{{ $aula->id }}">{{ $aula->nombre }}</option>
+
+                    @else
+
+                        <option value="{{ $aula->id }}">{{ $aula->nombre }}</option>
+
+                    @endif
 
                 @endforeach
             </select>
