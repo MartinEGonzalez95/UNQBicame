@@ -8,8 +8,6 @@ class AulasController extends Controller
 {
     public function index()
     {
-        $aulas = Aula::all();
-        
-        return $aulas;
+        return Aula::with(['sector', 'cursadas'])->get();
     }
 }
