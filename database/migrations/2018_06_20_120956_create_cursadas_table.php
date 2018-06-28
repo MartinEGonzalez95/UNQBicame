@@ -15,6 +15,8 @@ class CreateCursadasTable extends Migration
     {
         Schema::create('cursadas', function (Blueprint $table) {
 
+            $table->increments('id');
+
             $table->enum('dia',
                 [
                     'lunes',
@@ -34,7 +36,7 @@ class CreateCursadasTable extends Migration
 
             $table->integer('aula_id');
 
-           $table->primary(['dia', 'hora_inicio', 'aula_id']);
+           $table->unique(['dia', 'hora_inicio', 'aula_id']);
 
             $table->timestamps();
         });
