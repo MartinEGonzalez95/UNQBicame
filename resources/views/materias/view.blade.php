@@ -1,24 +1,10 @@
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-    }
+@extends('welcome')
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+@section('content')
 
 <h2> Materias </h2>
-
-<table>
+<a href="{{ route('materias.create') }}" class="btn btn-link">Agregar</a>
+<table class="table table-borderless table-hover table-sm">
     <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -28,8 +14,10 @@
     <tr>
         <td>{{$materia->id}}</td>
         <td>{{$materia->nombre}}</td>
-        <td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" > Editar </a></td>
+        <td> <a href="{{ route('materias.edit', ['id' => $materia->id]) }}" ><i class="fas fa-pencil-alt"></i></a></td>
 
     </tr>
     @endforeach
 </table>
+
+@endsection
