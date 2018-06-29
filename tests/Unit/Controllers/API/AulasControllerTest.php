@@ -9,7 +9,7 @@
 namespace Tests\Unit\Controllers\API;
 
 use App\Aula;
-use App\Http\Controllers\Web\AulasController;
+use App\Http\Controllers\AulasController;
 use App\Sector;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
@@ -35,11 +35,12 @@ class AulasControllerTest extends TestCase
 
     public function testIndex()
     {
-        $aulas = Aula::all();
-
-        # Route::get('/aulas', 'AulasController@index');
+        
+        $controller = new AulasController();
+        
+        $aulas = $controller->index();
+        
         $response = $this->call('GET', '/api/aulas');
-
         $response->assertStatus(200);
         $this->assertEquals($aulas, $response->getContent());
 
