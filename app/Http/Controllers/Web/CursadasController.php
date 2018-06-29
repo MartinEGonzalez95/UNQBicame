@@ -49,4 +49,14 @@ class CursadasController extends Controller
         return view('cursadas.create')->with(['aulas' => $aulas, 'materias' => $materias]);
 
     }
+
+    public function destroy($id){
+
+        $cursada = Cursada::find($id);
+
+        $cursada->delete();
+
+        return back();
+
+    }
 }

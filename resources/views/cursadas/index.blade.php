@@ -11,6 +11,7 @@
         <th>Día</th>
         <th>Inicio</th>
         <th>Fin</th>
+        <th></th>
     </tr>
     @foreach($cursadas as $cursada)
         <tr>
@@ -19,6 +20,7 @@
             <td>{{ $cursada->dia }}</td>
             <td>{{ $cursada->hora_inicio }}</td>
             <td>{{ $cursada->hora_fin }}</td>
+            <td> <a href="{{route('cursadas.delete', $cursada->id)}}"> <i class="fa fa-trash"> </i> </a> </td>
         </tr>
     @endforeach
 </table>
