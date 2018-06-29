@@ -2,6 +2,8 @@
 
 use App\Aula;
 use App\Sector;
+use App\Materia;
+
 use Behat\Behat\Context\Context;
 use Tests\TestCase;
 
@@ -17,13 +19,15 @@ class FeatureContext extends TestCase implements Context
 
     private $aula;
     private $sector;
+    private $materia;
+    private $nombreMateria;
 
     /**
      * Initializes context.
      */
     public function __construct()
     {
-
+        $this->materia = new Materia();
         $this->aula = new Aula();
         $this->sector = new Sector();
 
@@ -64,4 +68,30 @@ class FeatureContext extends TestCase implements Context
         $this->assertEquals($this->sector->piso, $this->pisoSector);
 
     }
+
+
+    /**
+     * @Given La materia cargada es :arg1
+     */
+    public function laMateriaCargadaEs($arg1)
+    {
+        $this->nombreMateria = $arg1;
+    }
+
+    /**
+     * @When El Administrador carga la información
+     */
+    public function elAdministradorCargaLaInformacion()
+    {
+        $this->materia->nombre = $this->nombreMateria;
+    }
+
+    /**
+     * @Then Debería de ver la Materia cargada
+     */
+    public function deberiaDeVerLaMateriaCargada()
+    {
+        $this->assertEquals($this->materia->nombre, $this->nombreMateria);
+    }
+
 }
