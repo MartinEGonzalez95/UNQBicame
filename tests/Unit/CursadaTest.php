@@ -76,28 +76,5 @@ class CursadaTest extends TestCase
 
     }
 
-    public function testSeBorraUnaCursada(){
-
-        $cursada = new Cursada();
-
-        $cursada->dia = 'lunes';
-        $cursada->hora_inicio = '18:00';
-        $cursada->hora_fin = '22:00';
-
-        $cursada->aula()->associate($this->aula);
-        $cursada->materia()->associate($this->materia);
-
-        $cursada->save();
-
-        $cursadas = Cursada::all();
-        $idCursadaABorrar = $cursadas->first()->id;
-
-        # Route::delete('/aulas/{id}', 'AulasController@destroy');
-        $response = $this->get( '/cursadas/'.    $idCursadaABorrar . '/delete');
-
-        $response->assertStatus(302);
-        $this->assertCount(0,Cursada::all());
-
-    }
 
 }
