@@ -1,6 +1,7 @@
 <?php
 
 use App\Aula;
+use App\Cursada;
 use App\Sector;
 use App\Materia;
 
@@ -93,5 +94,91 @@ class FeatureContext extends TestCase implements Context
     {
         $this->assertEquals($this->materia->nombre, $this->nombreMateria);
     }
+
+    private $cursada;
+    private $horaFin;
+    private $diaCursada;
+    private $horaInicio;
+
+
+    /**
+     * @Given La Cursada cargada
+     */
+    public function laCursadaCargada()
+    {
+
+        $this->cursada = new Cursada();
+
+
+    }
+
+    /**
+     * @Given El Aula es :arg1
+     */
+    public function elAulaEs($arg1)
+    {
+
+        $this->aula->nombre = $arg1;
+    }
+
+    /**
+     * @Given La Materia es :arg1
+     */
+    public function laMateriaEs($arg1)
+    {
+        $this->materia->nombre = $arg1;
+    }
+
+    /**
+     * @Given El día es :arg1
+     */
+    public function elDiaEs($arg1)
+    {
+        $this->diaCursada = $arg1;
+    }
+
+    /**
+     * @Given El Horario es inicio :arg1
+     */
+    public function elHorarioEsInicio($arg1)
+    {
+        $this->horaInicio = $arg1;
+    }
+
+    /**
+     * @Given El Horario de fin es :arg1
+     */
+    public function elHorarioDeFinEs($arg1)
+    {
+        $this->horaFin = $arg1;
+    }
+
+
+    /**
+     * @When /^El Administrador carga la informacion de la Cursada$/
+     */
+    public function elAdministradorCargaLaInformacionDeLaCursada1()
+    {
+        $this->cursada->hora_inicio= $this->horaInicio;
+        $this->cursada->hora_fin= $this->horaFin;
+        $this->cursada->aula = ($this->aula);
+        $this->cursada->materia = ($this->materia);
+        $this->cursada->dia= $this->diaCursada;
+
+    }
+
+   /**
+     * @Then Debería de ver la Cursada cargada
+     */
+    public function deberiaDeVerLaCursadaCargada()
+    {
+        $this->assertEquals($this->cursada->dia, $this->diaCursada);
+        $this->assertEquals($this->cursada->hora_inicio,$this->horaInicio);
+        $this->assertEquals($this->cursada->hora_fin,$this->horaFin);
+
+        $this->assertEquals($this->cursada->aula,$this->aula);
+        $this->assertEquals($this->cursada->materia,$this->materia);
+    }
+
 
 }
