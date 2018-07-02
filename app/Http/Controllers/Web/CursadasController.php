@@ -56,7 +56,7 @@ class CursadasController extends Controller
 
         $cursada->delete();
 
-        return back();
+        return redirect('/cursadas');
 
     }
 }
