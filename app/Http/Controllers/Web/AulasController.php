@@ -36,6 +36,11 @@ class AulasController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'aulaNombre' => 'required',
+            'sector_id' => 'required|exists:sectores,id',
+        ]);
+
         $sectorID = $request->get('sector_id');
         $sector = Sector::find($sectorID);
         $nombre = $request->get('aulaNombre');
@@ -56,8 +61,13 @@ class AulasController extends Controller
         return view('aulas.edit')->with(["sectores"=> $sectores ,'aula' => $aula]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'aulaNombre' => 'required',
+            'sector_id' => 'required|exists:sectores,id',
+        ]);
+
         $aula = Aula::find($id);
 
         $aula->nombre = $request->get('aulaNombre');
