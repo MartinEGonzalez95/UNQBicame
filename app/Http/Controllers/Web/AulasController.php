@@ -67,12 +67,18 @@ class AulasController extends Controller
         $sector = Sector::find($sectorID);
         $aula->sector()->associate($sector);
 
-
-
         $aula->save();
 
         return redirect('/aulas');
     }
 
+    public function destroy($id)
+    {
+        $aula = Aula::find($id);
+
+        $aula->delete();
+
+        return redirect('/aulas');
+    }
 
 }
