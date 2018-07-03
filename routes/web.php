@@ -23,6 +23,7 @@ Route::post('/aulas/agregar','Web\AulasController@store')->name('aulas.store');
 Route::get('/aulas/{id}/editar','Web\AulasController@edit')->name('aulas.edit');
 Route::put('/aulas/{id}/editar','Web\AulasController@update')->name('aulas.update');
 Route::get('/aulas/{aula}','Web\AulasController@show')->name('aulas.show');
+Route::delete('/aulas/{id}','Web\AulasController@destroy')->name('aulas.delete');
 
 //Materias
 Route::get('/materias', 'Web\MateriasController@index')->name('materias.index');

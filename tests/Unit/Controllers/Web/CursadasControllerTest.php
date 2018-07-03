@@ -54,7 +54,7 @@ class CursadasControllerTest extends TestCase
 
         $idCursadaABorrar = $cursada->id;
 
-        # Route::delete('/aulas/{id}', 'CursadasController@destroy');
+        # Route::delete('/cursadas/{id}', 'CursadasController@destroy');
         $response = $this->delete( '/cursadas/'.    $idCursadaABorrar );
 
         $response->assertStatus(302);
