@@ -22,8 +22,7 @@
             <td>{{ $cursada->hora_fin }}</td>
             <td>
                 <form action="/cursadas/{{ $cursada->id }}" method="post">
-                    <input type="hidden" name="_method" value="delete" />
-                        {!! csrf_field() !!}
+                    {{ method_field('DELETE') }} {!! csrf_field() !!}
                     <button class="fa fa-trash" type="submit"></button>
                 </form>
             </td>

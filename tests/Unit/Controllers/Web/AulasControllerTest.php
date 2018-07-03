@@ -10,7 +10,6 @@ namespace Tests\Unit\Controllers\Web;
 
 
 use App\Aula;
-use App\Http\Controllers\Web\AulasController;
 use App\Sector;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
