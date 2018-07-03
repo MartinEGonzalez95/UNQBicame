@@ -42,6 +42,9 @@ class CreateCursadasTable extends Migration
 
             $table->timestamps();
         });
+    
+        // Habilita las foreign key constraints
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

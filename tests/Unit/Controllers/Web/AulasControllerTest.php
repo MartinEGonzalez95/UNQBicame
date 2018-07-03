@@ -157,7 +157,7 @@ class AulasControllerTest extends TestCase
         $this->assertCount(0,Aula::all());
 
         # Voy a comentarlo porque por consola el test no pasa
-        # $this->assertCount(0,Cursada::all());
+        $this->assertCount(0,Cursada::all());
 
     }
 
