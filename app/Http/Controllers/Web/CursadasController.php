@@ -37,6 +37,7 @@ class CursadasController extends Controller
         $cursada->materia()->associate($materia);
 
         $cursada->save();
+
         return redirect('/cursadas');
     }
 
@@ -75,6 +76,16 @@ class CursadasController extends Controller
         $cursada->materia()->associate($materia);
 
         $cursada->save();
+      
         return redirect('/cursadas');
+    }
+  
+    public function destroy($id)
+    {
+        $cursada = Cursada::find($id);
+
+        $cursada->delete();
+
+        return back();
     }
 }

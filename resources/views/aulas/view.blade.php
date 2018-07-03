@@ -1,36 +1,29 @@
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-    }
+@extends('welcome')
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
+@section('content')
 <h2> Aulas </h2>
-
-<table>
+<a href="{{ route('aulas.create') }}" class="btn btn-link">Agregar</a>
+<table class="table table-borderless table-hover table-sm">
     <tr>
         <th>Numero</th>
         <th>Sector</th>
         <th>Piso</th>
-        <th> </th>
+        <th>Acciones</th>
     </tr>
     @foreach($aulas as $aula)
     <tr>
         <td>{{$aula->nombre}}</td>
         <td>{{$aula->sector->nombre}}</td>
         <td>{{$aula->sector->piso}}</td>
-        <td> <a href="{{action("Web\AulasController@edit",[$aula->id])}}" class="btn" type="button"> Editar </a></td>
+        <td>
+            <a href="{{ route("aulas.show", [ $aula->id ] ) }}" class="btn" type="button">
+                Ver
+            </a>
+            <a href="{{ route("aulas.edit", [ $aula->id ] ) }}" class="btn" type="button">
+                Editar
+            </a>
+        </td>
     </tr>
     @endforeach
 </table>
+@endsection
