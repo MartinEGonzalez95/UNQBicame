@@ -20,7 +20,12 @@
             <td>{{ $cursada->dia }}</td>
             <td>{{ $cursada->hora_inicio }}</td>
             <td>{{ $cursada->hora_fin }}</td>
-            <td> <a href="{{route('cursadas.delete', ['id' => $cursada->id])}}"> <i class="fa fa-trash"> </i> </a> </td>
+            <td>
+                <form action="/cursadas/{{ $cursada->id }}" method="post">
+                    {{ method_field('DELETE') }} {!! csrf_field() !!}
+                    <button class="fa fa-trash" type="submit"></button>
+                </form>
+            </td>
         </tr>
     @endforeach
 </table>

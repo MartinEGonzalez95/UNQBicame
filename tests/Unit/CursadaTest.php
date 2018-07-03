@@ -52,8 +52,8 @@ class CursadaTest extends TestCase
         $cursada = new Cursada();
 
         $cursada->dia = 'lunes';
-        $cursada->hora_inicio = '18:00';
-        $cursada->hora_fin = '22:00';
+        $cursada->hora_inicio = '18:00:00';
+        $cursada->hora_fin = '22:00:00';
 
         $cursada->aula()->associate($this->aula);
         $cursada->materia()->associate($this->materia);
@@ -68,35 +68,11 @@ class CursadaTest extends TestCase
 
         $this->assertCount(1, $cursadas);
         $this->assertEquals('lunes', $cursadaPersistida->dia);
-        $this->assertEquals('18:00', $cursadaPersistida->hora_inicio);
-        $this->assertEquals('22:00', $cursadaPersistida->hora_fin);
+        $this->assertEquals('18:00:00', $cursadaPersistida->hora_inicio);
+        $this->assertEquals('22:00:00', $cursadaPersistida->hora_fin);
         $this->assertEquals('Objetos 1', $cursadaPersistida->materia->nombre);
         $this->assertEquals('37b', $cursadaPersistida->aula->nombre);
 
-
-    }
-
-    public function testSeBorraUnaCursada(){
-
-        $cursada = new Cursada();
-
-        $cursada->dia = 'lunes';
-        $cursada->hora_inicio = '18:00';
-        $cursada->hora_fin = '22:00';
-
-        $cursada->aula()->associate($this->aula);
-        $cursada->materia()->associate($this->materia);
-
-        $cursada->save();
-
-        $cursadas = Cursada::all();
-        $idCursadaABorrar = $cursadas->first()->id;
-
-        # Route::delete('/aulas/{id}', 'AulasController@destroy');
-        $response = $this->get( '/cursadas/'.    $idCursadaABorrar . '/delete');
-
-        $response->assertStatus(302);
-        $this->assertCount(0,Cursada::all());
 
     }
 
