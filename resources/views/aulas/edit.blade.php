@@ -1,31 +1,48 @@
-<form method="post" action="/aulas/{{$aula->id}}/editar">
-    {{csrf_field()}}
-    {{method_field('PUT')}}
+@extends('welcome')
 
-    <div class="form-group">
+@section('content')
 
-        <label for="aulaNombre">Número</label>
+    <h1 class="mt-3">Editando: <strong>Aula {{ $aula->nombre }}</strong></h1>
 
-        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('aulas.show', ['aula' => $aula->id]) }}">Ver</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ route('aulas.edit', ['aula' => $aula->id]) }}">Editar</a>
+        </li>
+    </ul>
 
-    </div>
+    <form method="post" action="/aulas/{{$aula->id}}/editar">
+        {{csrf_field()}}
+        {{method_field('PUT')}}
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label for="aulaSector">Sector</label>
+            <label for="aulaNombre">Número</label>
 
-        <select id="aulaSector"  name="sector_id">
+            <input type="text" class="form-control" id="aulaNombre" name="aulaNombre" value="{{ $aula->nombre }}">
 
-            @foreach($sectores as $sector):
+        </div>
 
-                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+        <div class="form-group">
 
-            @endforeach
+            <label for="aulaSector">Sector</label>
 
-        </select>
+            <select id="aulaSector"  name="sector_id">
 
-    </div>
+                @foreach($sectores as $sector):
 
-    <button type="submit" class="btn btn-primary"> Guardar </button>
+                    <option @if($sector->id == $aula->sector->id) {{ 'selected' }} @endif value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
 
-</form>
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Guardar </button>
+
+    </form>
+
+@endsection

@@ -1,14 +1,24 @@
-<form method="post" action="/materias">
-    {{csrf_field()}}
+@extends('welcome')
 
-    <div class="form-group">
+@section('content')
 
-        <label for="materiaNombre">Nombre</label>
+    <h2 class="mt-3">Agregar <strong>Materia</strong></h2>
 
-        <input type="text" class="form-control" id="materiaNombre" name="materiaNombre">
+    <hr>
 
-    </div>
+    <form method="post" action="/materias">
+        {{csrf_field()}}
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="form-group">
 
-</form>
+            <label for="materiaNombre">Nombre</label>
+
+            <input type="text" class="form-control" id="materiaNombre" name="materiaNombre">
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+
+@endsection

@@ -1,22 +1,38 @@
-<h1>Aula <em>{{ $aula->nombre }}</em></h1>
+@extends('welcome')
 
-<h2>En esta aula se cursa:</h2>
+@section('content')
+
+    <h1 class="mt-3"><strong>Aula{{ $aula->nombre }}</strong></h1>
 
 
-@if($aula->cursadas->count())
-
-    <ul>
-        @foreach($aula->cursadas as $cursada)
-            <li>
-                {{ $cursada->dia }} de {{ $cursada->hora_inicio }} a {{ $cursada->hora_fin }}
-                <strong>{{ $cursada->materia->nombre }}</strong>
-            </li>
-        @endforeach
-
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ route('aulas.show', ['aula' => $aula->id]) }}">Ver</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('aulas.edit', ['aula' => $aula->id]) }}">Editar</a>
+        </li>
     </ul>
 
-@else
+    <h2>En esta aula se cursa:</h2>
 
-    <p>No hay cursadas asignadas</p>
 
-@endif
+    @if($aula->cursadas->count())
+
+        <ul>
+            @foreach($aula->cursadas as $cursada)
+                <li>
+                    {{ $cursada->dia }} de {{ $cursada->hora_inicio }} a {{ $cursada->hora_fin }}
+                    <strong>{{ $cursada->materia->nombre }}</strong>
+                </li>
+            @endforeach
+
+        </ul>
+
+    @else
+
+        <p>No hay cursadas asignadas</p>
+
+    @endif
+
+@endsection
