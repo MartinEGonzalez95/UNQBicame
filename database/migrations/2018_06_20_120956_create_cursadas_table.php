@@ -32,7 +32,9 @@ class CreateCursadasTable extends Migration
 
             $table->time('hora_fin');
 
-            $table->integer('materia_id');
+            $table->integer('materia_id')->unsigned();
+
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
 
             $table->integer('aula_id')->unsigned();
 
