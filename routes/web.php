@@ -40,3 +40,6 @@ Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas
 Route::post('/cursadas','Web\CursadasController@store')->name('cursadas.store');
 
 Route::delete('/cursadas/{id}','Web\CursadasController@destroy')->name('cursadas.delete');
+Route::get('/cursadas/{cursada}/editar', 'Web\CursadasController@edit')->name('cursadas.edit');
+Route::put('/cursadas/{id}/editar','Web\CursadasController@update');
+
