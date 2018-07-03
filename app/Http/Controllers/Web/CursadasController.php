@@ -23,6 +23,14 @@ class CursadasController extends Controller
     {
         $params = $request->all();
 
+        $request->validate([
+            'dia' => 'required',
+            'hora_fin' => 'required',
+            'hora_inicio' => 'required',
+            'materia' => 'required|exists:materias,id',
+            'aula' => 'required|exists:aulas,id',
+        ]);
+
         $cursada = new Cursada();
 
         $cursada->dia = $params['dia'];
@@ -60,6 +68,15 @@ class CursadasController extends Controller
 
     public function update(Request $request,$id)
     {
+
+        $request->validate([
+            'dia' => 'required',
+            'hora_fin' => 'required',
+            'hora_inicio' => 'required',
+            'materia' => 'required|exists:materias,id',
+            'aula' => 'required|exists:aulas,id',
+        ]);
+
         $params = $request->all();
 
         $cursada = Cursada::find($id);
@@ -68,7 +85,7 @@ class CursadasController extends Controller
         $cursada->hora_inicio = $params['hora_inicio'];
         $cursada->hora_fin = $params['hora_fin'];
 
-        $aula = Aula::find($params['aula']);
+        $aula = Aula::findOrFail($params['aula']);
 
         $materia = Materia::find($params['materia']);
 
@@ -82,7 +99,7 @@ class CursadasController extends Controller
   
     public function destroy($id)
     {
-        $cursada = Cursada::find($id);
+        $cursada = Cursada::findOrFail($id);
 
         $cursada->delete();
 
