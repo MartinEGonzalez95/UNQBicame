@@ -23,9 +23,18 @@
             <td>{{$aula->sector->nombre}}</td>
             <td>{{$aula->sector->piso}}</td>
             <td>
-                <a class="btn btn-link" href="{{ route("aulas.edit", [ $aula->id ] ) }}" class="btn" type="button">
+                <a class="btn btn-link" href="{{ route("aulas.edit", [ $aula->id ] ) }}">
                     <i class="fas fa-pencil-alt"></i>
                 </a>
+                <form class="form-inline" action="/aulas/{{ $aula->id }}" method="post">
+                    {{ method_field('DELETE') }}
+                    {!! csrf_field() !!}
+
+                    <label class="sr-only" for="delete-{{$aula->id}}">Name</label>
+                    <button id="delete-{{$aula->id}}" class="btn btn-link" type="submit">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </form>
             </td>
         </tr>
 
