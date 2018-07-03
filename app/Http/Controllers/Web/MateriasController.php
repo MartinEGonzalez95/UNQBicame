@@ -60,4 +60,14 @@ class MateriasController extends Controller
 
         return redirect('/materias');
     }
+
+    public function destroy($id)
+    {
+        $materia = Materia::find($id);
+
+        $materia->delete();
+
+        return redirect('/materias');
+    }
+
 }
