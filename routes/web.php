@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 //Aulas
-
 Route::get('/aulas/agregar', 'Web\AulasController@create')->name('aulas.create');
 Route::get('/aulas', 'Web\AulasController@index')->name('aulas.index');
 Route::post('/aulas/agregar','Web\AulasController@store')->name('aulas.store');
@@ -27,19 +26,16 @@ Route::delete('/aulas/{id}','Web\AulasController@destroy')->name('aulas.delete')
 
 //Materias
 Route::get('/materias', 'Web\MateriasController@index')->name('materias.index');
-
 Route::get('/materias/agregar', 'Web\MateriasController@create')->name('materias.create');
 Route::post('/materias','Web\MateriasController@store');
 Route::get('/materias/{id}/editar', 'Web\MateriasController@edit')->name('materias.edit');
 Route::put('/materias/{id}/editar','Web\MateriasController@update');
+Route::delete('/materias/{id}','Web\MateriasController@destroy')->name('materias.delete');
 
-/**
- * Cursadas
- */
+// Cursadas
 Route::get('/cursadas', 'Web\CursadasController@index')->name('cursadas.index');
 Route::get('/cursadas/agregar', 'Web\CursadasController@create')->name('cursadas.create');
 Route::post('/cursadas','Web\CursadasController@store')->name('cursadas.store');
-
 Route::delete('/cursadas/{id}','Web\CursadasController@destroy')->name('cursadas.delete');
 Route::get('/cursadas/{cursada}/editar', 'Web\CursadasController@edit')->name('cursadas.edit');
 Route::put('/cursadas/{id}/editar','Web\CursadasController@update');
