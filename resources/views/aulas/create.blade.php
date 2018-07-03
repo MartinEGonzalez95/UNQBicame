@@ -1,29 +1,39 @@
-<form method="post" action="/aulas/agregar">
-    {{csrf_field()}}
-    <div class="form-group">
+@extends('welcome')
 
-        <label for="aulaNombre">Número</label>
+@section('content')
 
-        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
+    <h2 class="mt-3">Agregar <strong>Aula</strong></h2>
 
-    </div>
+    <hr>
 
-    <div class="form-group">
+    <form method="post" action="/aulas/agregar">
+        {{csrf_field()}}
+        <div class="form-group">
 
-        <label for="aulaSector">Sector</label>
+            <label for="aulaNombre">Número</label>
 
-        <select id="aulaSector"  name="sector_id">
+            <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
 
-            @foreach($sectores as $sector):
+        </div>
 
-                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+        <div class="form-group">
 
-            @endforeach
+            <label for="aulaSector">Sector</label>
 
-        </select>
+            <select id="aulaSector"  name="sector_id">
 
-    </div>
+                @foreach($sectores as $sector):
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
 
-</form>
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+
+    @endsection
