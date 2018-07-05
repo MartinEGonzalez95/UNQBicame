@@ -85,15 +85,14 @@ class CursadasControllerTest extends TestCase
         $cursada->materia()->associate($this->materiaIntro);
 
         $cursada->save();
-
         $cursadas = Cursada::all();
+
         $idCursadaABorrar = $cursadas->first()->id;
+        # Route::delete('/cursadas/{id}', 'CursadasController@destroy');
+        $response = $this->delete( '/cursadas/'.    $idCursadaABorrar );
 
-        # Route::delete('/aulas/{id}', 'AulasController@destroy');
-        $response = $this->get( '/cursadas/'.    $idCursadaABorrar . '/delete');
-
-        $response->assertStatus(302);
         $this->assertCount(0,Cursada::all());
+        $response->assertStatus(302);
 
     }
 
