@@ -1,29 +1,49 @@
-<form method="post" action="/aulas/agregar">
-    {{csrf_field()}}
-    <div class="form-group">
+@extends('welcome')
 
-        <label for="aulaNombre">Número</label>
+@section('content')
 
-        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
+    <h2 class="mt-3">Agregar <strong>Aula</strong></h2>
 
-    </div>
+    <hr>
 
-    <div class="form-group">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-        <label for="aulaSector">Sector</label>
+    <form method="post" action="/aulas/agregar">
+        {{csrf_field()}}
+        <div class="form-group">
 
-        <select id="aulaSector"  name="sector_id">
+            <label for="aulaNombre">Número</label>
 
-            @foreach($sectores as $sector):
+            <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
 
-                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+        </div>
 
-            @endforeach
+        <div class="form-group">
 
-        </select>
+            <label for="aulaSector">Sector</label>
 
-    </div>
+            <select id="aulaSector"  name="sector_id">
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+                @foreach($sectores as $sector):
 
-</form>
+                    <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+
+    @endsection

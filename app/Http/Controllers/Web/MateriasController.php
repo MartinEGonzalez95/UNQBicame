@@ -29,6 +29,9 @@ class MateriasController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'materiaNombre' => 'required',
+        ]);
 
         $materia = new Materia(
             ['nombre' => $request->get('materiaNombre')]
@@ -52,7 +55,11 @@ class MateriasController extends Controller
 
     public function update(Request $request,$id)
     {
-       $materiaAModificar = Materia::find($id);
+        $request->validate([
+            'materiaNombre' => 'required',
+        ]);
+
+        $materiaAModificar = Materia::find($id);
 
         $materiaAModificar->nombre = $request->get('materiaNombre');
 
@@ -60,4 +67,14 @@ class MateriasController extends Controller
 
         return redirect('/materias');
     }
+
+    public function destroy($id)
+    {
+        $materia = Materia::find($id);
+
+        $materia->delete();
+
+        return redirect('/materias');
+    }
+
 }

@@ -32,14 +32,21 @@ class CreateCursadasTable extends Migration
 
             $table->time('hora_fin');
 
-            $table->integer('materia_id');
+            $table->integer('materia_id')->unsigned();
 
-            $table->integer('aula_id');
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
 
-           $table->unique(['dia', 'hora_inicio', 'aula_id']);
+            $table->integer('aula_id')->unsigned();
+
+            $table->foreign('aula_id')->references('id')->on('aulas')->onDelete('cascade');
+
+            $table->unique(['dia', 'hora_inicio', 'aula_id']);
 
             $table->timestamps();
         });
+    
+        // Habilita las foreign key constraints
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

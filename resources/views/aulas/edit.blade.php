@@ -1,31 +1,58 @@
-<form method="post" action="/aulas/{{$aula->id}}/editar">
-    {{csrf_field()}}
-    {{method_field('PUT')}}
+@extends('welcome')
 
-    <div class="form-group">
+@section('content')
 
-        <label for="aulaNombre">Número</label>
+    <h1 class="mt-3">Editando: <strong>Aula {{ $aula->nombre }}</strong></h1>
 
-        <input type="text" class="form-control" id="aulaNombre" name="aulaNombre">
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('aulas.show', ['aula' => $aula->id]) }}">Ver</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ route('aulas.edit', ['aula' => $aula->id]) }}">Editar</a>
+        </li>
+    </ul>
 
-    </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <div class="form-group">
+    <form method="post" action="/aulas/{{$aula->id}}/editar">
+        {{csrf_field()}}
+        {{method_field('PUT')}}
 
-        <label for="aulaSector">Sector</label>
+        <div class="form-group">
 
-        <select id="aulaSector"  name="sector_id">
+            <label for="aulaNombre">Número</label>
 
-            @foreach($sectores as $sector):
+            <input type="text" class="form-control" id="aulaNombre" name="aulaNombre" value="{{ $aula->nombre }}">
 
-                <option value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+        </div>
 
-            @endforeach
+        <div class="form-group">
 
-        </select>
+            <label for="aulaSector">Sector</label>
 
-    </div>
+            <select id="aulaSector"  name="sector_id">
 
-    <button type="submit" class="btn btn-primary"> Guardar </button>
+                @foreach($sectores as $sector):
 
-</form>
+                    <option @if($sector->id == $aula->sector->id) {{ 'selected' }} @endif value="{{$sector->id}}">{{$sector->nombre}} - {{$sector->piso}}</option>
+
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Guardar </button>
+
+    </form>
+
+@endsection

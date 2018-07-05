@@ -10,8 +10,9 @@ namespace Tests\Unit\Controllers\Web;
 
 
 use App\Aula;
-use App\Http\Controllers\Web\AulasController;
+use App\Materia;
 use App\Sector;
+use App\Cursada;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
@@ -19,23 +20,19 @@ use Tests\TestCase;
 class AulasControllerTest extends TestCase
 {
 
-    use  RefreshDatabase;
+    use RefreshDatabase;
     use WithoutMiddleware;
     private $sector;
-    private $aula37B;
+    private $aula;
+    private $materia;
 
     public function setUp()
     {
         parent::setUp();
 
-
         $this->sector = new Sector(['nombre'=> 'Ala Izquierda','piso'=>1]);
         $this->sector->save();
 
-        $this->aula37B = new Aula(['nombre'=> '37B']);
-        $this->aula37B->sector()->associate($this->sector);
-        $this->aula37B->id = 1;
-        $this->aula37B->save();
     }
 
 
@@ -60,7 +57,7 @@ class AulasControllerTest extends TestCase
         $this->assertEquals('37B',$aulaNueva->nombre);
         $this->assertEquals('Ala Izquierda',$sectorAlaIzquierda->nombre);
 
-        $this->assertCount(2,$aulas);
+        $this->assertCount(1,$aulas);
         $this->assertEquals(302, $response->status());
 
     }
@@ -75,12 +72,14 @@ class AulasControllerTest extends TestCase
             'aulaNombre' => '38'
         ];
 
+        $this->crearAula();
+
 
         # Route::put('/aulas/{id}/editar', 'AulasController@update');
-        $response = $this->put( '/aulas/'.    $this->aula37B->id . '/editar', $jsonPut);
+        $response = $this->put( '/aulas/'.    $this->aula->id . '/editar', $jsonPut);
 
 
-        $aulaEditada = Aula::find($this->aula37B->id);
+        $aulaEditada = Aula::find($this->aula->id);
 
         $sectorAlaIzquierda = $aulaEditada->sector;
 
@@ -97,7 +96,6 @@ class AulasControllerTest extends TestCase
     public function testDadaUnAulaExistenteSeEditaCambiandoElSector()
     {
 
-
         $nuevoSector = new Sector(['nombre'=> 'Ala Derecha','piso'=>1]);
         $nuevoSector->save();
 
@@ -107,12 +105,14 @@ class AulasControllerTest extends TestCase
             'aulaNombre' => '37B'
         ];
 
+        $this->crearAula();
+
 
         # Route::put('/aulas/{id}/editar', 'AulasController@update');
-        $response = $this->put( '/aulas/'.    $this->aula37B->id . '/editar', $jsonPut);
+        $response = $this->put( '/aulas/'.    $this->aula->id . '/editar', $jsonPut);
 
 
-        $aulaEditada = Aula::find($this->aula37B->id);
+        $aulaEditada = Aula::find($this->aula->id);
 
         $sectorActual = $aulaEditada->sector;
 
@@ -124,5 +124,70 @@ class AulasControllerTest extends TestCase
 
     }
 
+    public function testSeBorraUnAula(){
+
+        $this->crearAula();
+
+        $idAulaABorrar = $this->aula->id;
+
+        # Route::delete('/aulas/{id}', 'AulasController@destroy');
+        $response = $this->delete( '/aulas/'.    $idAulaABorrar );
+
+        $response->assertStatus(302);
+
+        $this->assertCount(0,Aula::all());
+
+    }
+
+    public function testSeBorraUnAulaYLaCursadaAsociada(){
+
+        $this->crearAula();
+
+        $this->crearMateria();
+
+        $this->crearCursada();
+
+        $idAulaABorrar = $this->aula->id;
+
+        # Route::delete('/aulas/{id}', 'AulasController@destroy');
+        $response = $this->delete( '/aulas/'.    $idAulaABorrar );
+
+        $response->assertStatus(302);
+
+        $this->assertCount(0,Aula::all());
+
+        # Voy a comentarlo porque por consola el test no pasa
+        $this->assertCount(0,Cursada::all());
+
+    }
+
+    private function crearAula(): void
+    {
+        $this->aula = new Aula(['nombre' => '37B']);
+        $this->aula->sector()->associate($this->sector);
+        $this->aula->id = 1;
+        $this->aula->save();
+    }
+
+    private function crearMateria(): void
+    {
+        $this->materia = new Materia();
+        $this->materia->nombre = 'Objetos 1';
+        $this->materia->save();
+    }
+
+    private function crearCursada(): void
+    {
+        $cursada = new Cursada();
+
+        $cursada->dia = 'lunes';
+        $cursada->hora_inicio = '18:00:00';
+        $cursada->hora_fin = '22:00:00';
+
+        $cursada->aula()->associate($this->aula);
+        $cursada->materia()->associate($this->materia);
+
+        $cursada->save();
+    }
 
 }
