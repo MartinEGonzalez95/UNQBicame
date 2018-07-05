@@ -60,6 +60,8 @@ class CursadaTest extends TestCase
 
         $cursada->save();
 
+        $cursada = new Cursada();
+
         $cursadas = Cursada::all();
 
         $cursadaPersistida = $cursadas->first();
@@ -73,5 +75,6 @@ class CursadaTest extends TestCase
 
 
     }
+
 
 }
