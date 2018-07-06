@@ -17,7 +17,7 @@
     @foreach($materias as $materia)
     <tr>
         <td>{{$materia->id}}</td>
-        <td>{{$materia->nombre}}</td>
+        <td><a href="{{ route("materias.edit", [ $materia->id ] ) }}">{{$materia->nombre}}</a></td>
         <td>
             <a class="btn btn-link" href="{{ route("materias.edit", [ $materia->id ] ) }}">
                 <i class="fas fa-pencil-alt"></i>
